@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: embedding-api-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: embedding-api
+  template:
+    metadata:
+      labels:
+        app: embedding-api
+    spec:
+      containers:
+        - name: embedding-api
+          image: samvad-registry/embedding-api-image:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: MONGODB_URI
+              value: "mongodb+srv://Cluster79836:aWxgYHNCelhE@cluster79836.0uqw1.mongodb.net/"
